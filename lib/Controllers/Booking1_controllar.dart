@@ -6,6 +6,7 @@ import '../../core/function/handlingdata.dart';
 import '../../data/signup.dart';
 import '../core/Services/Services.dart';
 import '../data/booking1.dart';
+import 'auth/booking_controller.dart';
 
 
 abstract class Booking1Controllar extends GetxController{
@@ -25,6 +26,7 @@ class Booking1ControllarImp extends Booking1Controllar {
   late TextEditingController age_p;
   late TextEditingController phone_p;
   late TextEditingController address_p;
+  late TextEditingController chronicdiseases;
   late TextEditingController sickcondition;
   late TextEditingController reservdate;
   late String selectedSickCondition="";
@@ -42,11 +44,25 @@ class Booking1ControllarImp extends Booking1Controllar {
       statusRequest = StatusRequest.loding;
       update();
 
+
+      String paymentMethod = Get.find<PaymentController>().selectedPaymentMethod.value;
+      int billNumber = paymentMethod == "wallet"
+          ? int.tryParse(num_bill.text) ?? 0
+          : 0;
+
+      print("🚀 طريقة الدفع: $paymentMethod");
+      print("📩 رقم الحوالة المرسل: $billNumber");
+
+
+
+
+
       var response = await booking1Data.postData(
         patientName.text,
         int.tryParse(age_p.text) ?? 0,
         int.tryParse(phone_p.text) ?? 0,
         address_p.text,
+        chronicdiseases.text,
         selectedSickCondition,
         reservdate.text,
         // patientNames.text,
@@ -86,6 +102,7 @@ class Booking1ControllarImp extends Booking1Controllar {
     age_p =TextEditingController();
     phone_p=TextEditingController();
     address_p=TextEditingController();
+    chronicdiseases=TextEditingController();
     sickcondition=TextEditingController();
     reservdate=TextEditingController();
     num_bill=TextEditingController();

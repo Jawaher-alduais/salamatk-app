@@ -22,7 +22,7 @@ class _ChatState extends State<Chat2> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "عائشة",
+          "سلامتك",
           style: TextStyle(color: Colors.white, fontSize: 15),
         ),
         backgroundColor: AppColor.c, // لون الخلفية

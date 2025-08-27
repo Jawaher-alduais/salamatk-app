@@ -14,7 +14,7 @@ class _NotificationsState extends State<Notifications> {
 
   getToken()async{
     String? mytoken = await FirebaseMessaging.instance.getToken();
-    print("================================= NOTFCATION==================================");
+    print("================================= NOTFCATIONS==================================");
     print(mytoken);
   }
 
@@ -61,7 +61,7 @@ class _NotificationsState extends State<Notifications> {
 
         backgroundColor: AppColor.c,
       ),
-    //  backgroundColor: AppColor.c,
+      //  backgroundColor: AppColor.c,
       body: ListView(
         children: [
           ListTile(

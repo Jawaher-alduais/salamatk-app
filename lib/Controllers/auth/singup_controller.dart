@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:app01/core/Constant/routeName.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../Model/user_model.dart';
 import '../../core/Class/statusrequest.dart';
 import '../../core/function/handlingdata.dart';
 import '../../data/signup.dart';
@@ -32,6 +36,12 @@ class SingupControllerImp extends SingupController {
 
   List data = [];
 
+  Future<void> saveUserData(user_model user) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String userJson = jsonEncode(user.to_json());
+    await prefs.setString("user", userJson);
+  }
+
 
   @override
   SingUp() async {
@@ -49,9 +59,14 @@ class SingupControllerImp extends SingupController {
 
       if (statusRequest == StatusRequest.success) {
         if (responseBody != null && responseBody['status'] == "success") {
-          Get.offNamed(AppRoute.homepage);
+         // Get.offNamed(AppRoute.homepage);
         } else {
-        //  Get.offNamed(AppRoute.homepagescreen);
+          await saveUserData(user_model(
+            name: username.text,
+            email: email.text,
+            number: phone.text,
+          ));
+          Get.offNamed(AppRoute.homepage);
           statusRequest = StatusRequest.failuer;
         }
       }

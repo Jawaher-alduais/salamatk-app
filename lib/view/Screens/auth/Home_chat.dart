@@ -35,6 +35,7 @@ class _HomeChatState extends State<HomeChat> {
                     padding: const EdgeInsets.all(8.0),
                     child: ListTile(
                       leading: CircleAvatar(radius: 30,
+                      backgroundImage: AssetImage(AppImagesAsset.profile),
                       backgroundColor: AppColor.cc,
                       //  backgroundImage: AssetImage(AppImagesAsset.chat)
                         ),
@@ -55,7 +56,9 @@ class _HomeChatState extends State<HomeChat> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ListTile(
-                      leading: CircleAvatar(radius: 30,  backgroundColor: AppColor.colorGray2,),
+                      leading: CircleAvatar(
+                        backgroundImage: AssetImage(AppImagesAsset.SalamatakBlue),
+                        radius: 30,  backgroundColor: AppColor.c4,),
                       title: Text("سلامتك",style: TextStyle(color: AppColor.colorBlack,fontWeight: FontWeight.bold),),
                     ),
                   ),
